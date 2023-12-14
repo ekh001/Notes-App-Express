@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
+
 
 import { Note as NoteModel} from "./models/notes";
-import Note from "./components/notes";
+import Note from "./components/Note";
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div>
     {notes.map(note => (
       <Note note={note} key={note._id} />
     ))}
