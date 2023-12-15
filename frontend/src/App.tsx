@@ -4,6 +4,8 @@ import logo from './logo.svg';
 
 import { Note as NoteModel} from "./models/notes";
 import Note from "./components/Note";
+import { Col, Container, Row } from 'react-bootstrap';
+import styles from "./styles/NotesPage.module.css"
 
 function App() {
 
@@ -29,12 +31,19 @@ function App() {
 
 
   return (
-    <div>
-    {notes.map(note => (
-      <Note note={note} key={note._id} />
-    ))}
+    <Container>
+      <Row xs={1} md={2} lg={3}
+      className='g-4'>
 
-    </div>
+
+    {notes.map(note => (
+      <Col  key={note._id}>
+      <Note note={note} />
+      </Col>
+    ))}
+    </Row>
+
+    </Container>
   );
 }
 
