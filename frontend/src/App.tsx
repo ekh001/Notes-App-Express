@@ -14,8 +14,7 @@ function App() {
   useEffect(() => {
     async function loadNotes() {
     try {
-    const response = await fetch("/api/notes", { method: "GET" });
-    const notes = await response.json();
+    
     setNotes(notes);      
     } catch (error) {
     console.error(error);
