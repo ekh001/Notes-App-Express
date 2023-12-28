@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+
+import * as NotesApi from "./network/notes_api";
 
 
 import { Note as NoteModel} from "./models/notes";
 import Note from "./components/Note";
 import { Col, Container, Row } from 'react-bootstrap';
 import styles from "./styles/NotesPage.module.css";
+import AddNoteDialog from './components/AddNoteDialogue';
 
 function App() {
 
   const [notes, setNotes] = useState<NoteModel[]>([]);
 
+  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+
   useEffect(() => {
     async function loadNotes() {
     try {
+      
+    const notes = await NotesApi.fetchNotes();
     
     setNotes(notes);      
     } catch (error) {
@@ -41,6 +47,10 @@ function App() {
       </Col>
     ))}
     </Row>
+
+    {
+       showAddNoteDialog && <AddNoteDialog />
+    }
 
     </Container>
   );
