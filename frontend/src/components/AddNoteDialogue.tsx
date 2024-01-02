@@ -1,8 +1,12 @@
 import { Modal } from "react-bootstrap";
 
-const AddNoteDialog = () => {
+interface AddNoteDialogProps {
+    onDismiss: () => void,
+}
+
+const AddNoteDialog = ({onDismiss}: AddNoteDialogProps) => {
     return ( 
-        <Modal show>
+        <Modal show onHide={onDismiss}>
             <Modal.Header closeButton>
                 <Modal.Title>
                     Add Note

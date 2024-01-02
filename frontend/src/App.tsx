@@ -5,7 +5,7 @@ import * as NotesApi from "./network/notes_api";
 
 import { Note as NoteModel} from "./models/notes";
 import Note from "./components/Note";
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import styles from "./styles/NotesPage.module.css";
 import AddNoteDialog from './components/AddNoteDialogue';
 
@@ -37,6 +37,9 @@ function App() {
 
   return (
     <Container>
+    <Button onClick={() => setShowAddNoteDialog(true)}>
+      Add new note
+    </Button>
       <Row xs={1} md={2} lg={3}
       className='g-4'>
 
@@ -49,7 +52,8 @@ function App() {
     </Row>
 
     {
-       showAddNoteDialog && <AddNoteDialog />
+       showAddNoteDialog && <AddNoteDialog 
+       onDismiss={() => setShowAddNoteDialog(false)}/>
     }
 
     </Container>
