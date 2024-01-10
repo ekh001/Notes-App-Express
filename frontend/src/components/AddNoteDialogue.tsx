@@ -31,7 +31,7 @@ const AddNoteDialog = ({ onDismiss, onNoteSaved }: AddNoteDialogProps) => {
         <Modal show onHide={onDismiss}>
             <Modal.Header closeButton>
                 <Modal.Title>
-                    Add Note
+                    Add New Note
                 </Modal.Title>
 
             </Modal.Header>
