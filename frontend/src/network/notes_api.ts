@@ -28,7 +28,7 @@ export async function createNote(note: NoteInput): Promise<Note> {
     {
         method: "POST",
         headers: {
-            "Content - Type": "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(note),
     });

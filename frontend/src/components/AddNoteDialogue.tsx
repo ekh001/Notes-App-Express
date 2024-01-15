@@ -45,8 +45,13 @@ const AddNoteDialog = ({ onDismiss, onNoteSaved }: AddNoteDialogProps) => {
                         <Form.Control 
                         type="text"
                         placeholder="Title"
+                        isInvalid={!!errors.title}
                         {...register("title", { required: "Required" })}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.title?.message}
+
+                        </Form.Control.Feedback>
 
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -67,7 +72,8 @@ const AddNoteDialog = ({ onDismiss, onNoteSaved }: AddNoteDialogProps) => {
             <Modal.Footer>
                 <Button
                 type="submit"
-                form="addNoteForm">
+                form="addNoteForm"
+                disabled={isSubmitting}>
                     Submit Note
                 </Button>
             </Modal.Footer>
