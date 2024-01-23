@@ -5,7 +5,7 @@ import * as NotesApi from "./network/notes_api";
 
 import { Note as NoteModel} from "./models/notes";
 import Note from "./components/Note";
-import { Col, Container, Row, Button } from 'react-bootstrap';
+import { Col, Container, Row, Button, Spinner } from 'react-bootstrap';
 import styles from "./styles/NotesPage.module.css";
 import stylesUtils from "./styles/Utils.module.css";
 import AddEditNoteDialog from './components/AddEditNoteDialogue';
@@ -15,20 +15,26 @@ function App() {
 
   const [notes, setNotes] = useState<NoteModel[]>([]);
 
+  const [notesLoading, setNotesLoading] = useState(true);
+  const [showNotesLoadingError, setShowNotesLoadingError] = useState(false);
+
   const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
   const [noteToEdit, setNoteToEdit] = useState<NoteModel|null>(null);
 
   useEffect(() => {
     async function loadNotes() {
     try {
+      setShowNotesLoadingError(false);
+      setNotesLoading(true);
       
-    const notes = await NotesApi.fetchNotes();
-    
-    setNotes(notes);      
+      const notes = await NotesApi.fetchNotes();
+      
+      setNotes(notes);      
     } catch (error) {
-    console.error(error);
-    alert(error);
-      
+      console.error(error);
+      setShowNotesLoadingError(true);   
+    } finally {
+      setNotesLoading(false);
     }
     }
     loadNotes();
@@ -49,6 +55,22 @@ function App() {
     
   }
 
+  const notesGrid = 
+    <Row xs={1} md={2} lg={3}
+    className='g-4'>
+
+
+  {notes.map(note => (
+    <Col  key={note._id}>
+    <Note note={note} 
+    className={styles.note}
+    onNoteClicked={setNoteToEdit}
+    
+    onDeleteNoteClicked={deleteNote} />
+    </Col>
+  ))}
+  </Row>
+
 
 
 
@@ -61,20 +83,10 @@ function App() {
       Add new note
       
     </Button>
-      <Row xs={1} md={2} lg={3}
-      className='g-4'>
 
+    {notesLoading && <Spinner animation='border' variant='primary' /> }
+    {showNotesLoadingError && <p>Something went wrong. Please try to refresh the page.</p>}
 
-    {notes.map(note => (
-      <Col  key={note._id}>
-      <Note note={note} 
-      className={styles.note}
-      onNoteClicked={setNoteToEdit}
-      
-      onDeleteNoteClicked={deleteNote} />
-      </Col>
-    ))}
-    </Row>
 
     {
        showAddNoteDialog && <AddEditNoteDialog 
