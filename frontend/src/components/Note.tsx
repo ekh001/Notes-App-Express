@@ -6,6 +6,7 @@ import { Note as NoteModel } from "../models/notes";
 import { formatDate } from "../utils/formatDate";
 import {MdDelete} from "react-icons/md";
 
+
 interface NoteProps {
     note: NoteModel,
     onNoteClicked: (note: NoteModel) => void,
@@ -39,6 +40,7 @@ const Note = ({ note, onNoteClicked, onDeleteNoteClicked, className }: NoteProps
                 <Card.Title
                 className={styleUtils.flexCenter}>
                     {title}
+
                     <MdDelete 
                     className="text-muted ms-auto"
                     onClick={(e)=> {

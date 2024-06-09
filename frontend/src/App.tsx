@@ -57,25 +57,23 @@ function App() {
 
   const notesGrid = 
     <Row xs={1} md={2} lg={3}
-    className='g-4'>
-
-
-  {notes.map(note => (
-    <Col  key={note._id}>
-    <Note note={note} 
-    className={styles.note}
-    onNoteClicked={setNoteToEdit}
-    
-    onDeleteNoteClicked={deleteNote} />
-    </Col>
-  ))}
-  </Row>
+    className={`g-4 ${styles.noteGrid}`}>
+      {notes.map(note => (
+        <Col  key={note._id}>
+          <Note note={note} 
+          className={styles.note}
+          onNoteClicked={setNoteToEdit}
+          onDeleteNoteClicked={deleteNote} />
+        </Col>
+      ))}
+    </Row>
 
 
 
 
   return (
-    <Container>
+    <Container className={styles.notesPage}>
+      
     <Button 
     className={`mb-4 ${stylesUtils.blockCenter} ${stylesUtils.flexCenter}`}
     onClick={() => setShowAddNoteDialog(true)}>
@@ -86,6 +84,15 @@ function App() {
 
     {notesLoading && <Spinner animation='border' variant='primary' /> }
     {showNotesLoadingError && <p>Something went wrong. Please try to refresh the page.</p>}
+
+    {!notesLoading && !showNotesLoadingError && 
+    <>
+    {
+       notes.length > 0
+        ? notesGrid
+        : <p>You don't have any notes yet.</p>
+    }
+    </>}
 
 
     {
