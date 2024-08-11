@@ -10,6 +10,7 @@ import styles from "./styles/NotesPage.module.css";
 import stylesUtils from "./styles/Utils.module.css";
 import AddEditNoteDialog from './components/AddEditNoteDialogue';
 import {FaPlus} from "react-icons/fa";
+import SignUpModal from './components/SignUpModal';
 
 function App() {
 
@@ -115,6 +116,13 @@ function App() {
       setNoteToEdit(null);
     }}
     />}
+
+    { true &&
+    <SignUpModal 
+    onDismiss={() => { }}
+    onSignUpSuccessful={() => { }}/>
+
+    }
 
     </Container>
   );
