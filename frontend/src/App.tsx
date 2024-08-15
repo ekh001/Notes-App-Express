@@ -11,6 +11,7 @@ import stylesUtils from "./styles/Utils.module.css";
 import AddEditNoteDialog from './components/AddEditNoteDialogue';
 import {FaPlus} from "react-icons/fa";
 import SignUpModal from './components/SignUpModal';
+import LoginModal from './components/LoginModal';
 
 function App() {
 
@@ -117,12 +118,16 @@ function App() {
     }}
     />}
 
-    { true &&
+    { false &&
     <SignUpModal 
     onDismiss={() => { }}
     onSignUpSuccessful={() => { }}/>
 
     }
+    {false && 
+    <LoginModal
+    onDismiss={() => { }}
+  onLoginSuccessful={() => { }}/>}
 
     </Container>
   );
