@@ -12,6 +12,7 @@ import AddEditNoteDialog from './components/AddEditNoteDialogue';
 import {FaPlus} from "react-icons/fa";
 import SignUpModal from './components/SignUpModal';
 import LoginModal from './components/LoginModal';
+import NavBar from './components/NavBar';
 
 function App() {
 
@@ -74,6 +75,14 @@ function App() {
 
 
   return (
+    <div>
+
+    <NavBar
+    loggedInUser={null}
+    onLoginClicked={() => { }}
+    onSignUpClicked={() => { }}
+    onLogoutSuccessful={() => { }}
+    />
     <Container className={styles.notesPage}>
       
     <Button 
@@ -130,6 +139,7 @@ function App() {
   onLoginSuccessful={() => { }}/>}
 
     </Container>
+    </div>
   );
 }
 
