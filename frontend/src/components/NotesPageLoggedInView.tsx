@@ -54,7 +54,7 @@ const NotesPageLogggedInView = () => {
     
       const notesGrid = 
         <Row xs={1} md={2} lg={3}
-        className={`g-4 ${styles.noteGrid}`}>
+        className={`g-4 ${styles.notesGrid}`}>
           {notes.map(note => (
             <Col  key={note._id}>
               <Note note={note} 
